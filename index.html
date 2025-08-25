@@ -23,7 +23,7 @@
         #app {
            position: relative;
     width: 100%;
-    height: 100%;
+    height: 100dvh;
     overflow: hidden;
     box-sizing: border-box; 
         }
@@ -42,26 +42,33 @@
         }
 
         .step {
-            position: absolute;
-            width: 100%;
-            max-width: 800px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.509);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            pointer-events: none;
-        }
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh; /* ✅ full visible screen height */
+    overflow-y: auto; /* ✅ vertical scroll if content is longer */
+    -webkit-overflow-scrolling: touch; /* ✅ smooth scroll on iOS */
 
-        .step.active {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: all;
-        }
+    max-width: 800px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.509);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+/* Keep active step visible */
+.step.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
 
         .btn {
             background: linear-gradient(135deg, #ec4899, #f43f5e);
